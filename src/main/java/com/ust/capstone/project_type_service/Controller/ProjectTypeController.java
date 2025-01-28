@@ -1,4 +1,4 @@
-package com.ust.capstone.project_type_service.Controller;
+package com.ust.capstone.project_type_service.controller;
 
 import com.ust.capstone.project_type_service.entity.ProjectType;
 import com.ust.capstone.project_type_service.service.ProjectTypeService;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/project-types")
+@RequestMapping("/api")
 public class ProjectTypeController {
 
     private final ProjectTypeService projectTypeService;
@@ -22,39 +22,34 @@ public class ProjectTypeController {
     }
 
     // Fetch all project types
-    
-    @GetMapping
+    @GetMapping("/project-types")
     public List<ProjectType> getAllProjectTypes() {
         return projectTypeService.getAllProjectTypes();
     }
 
     // Fetch a specific project type by ID
-    
-    @GetMapping("/{id}")
+    @GetMapping("/project-types/{id}")
     public ResponseEntity<ProjectType> getProjectTypeById(@PathVariable Long id) {
         Optional<ProjectType> projectType = projectTypeService.getProjectTypeById(id);
         return projectType.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Create a new project type
-    
-    @PostMapping
+    @PostMapping("/project-types")
     public ResponseEntity<ProjectType> createProjectType(@RequestBody ProjectType projectType) {
         ProjectType createdProjectType = projectTypeService.createProjectType(projectType);
         return new ResponseEntity<>(createdProjectType, HttpStatus.CREATED);
     }
 
     // Update an existing project type
-    
-    @PutMapping("/{id}")
+    @PutMapping("/project-types/{id}")
     public ResponseEntity<ProjectType> updateProjectType(@PathVariable Long id, @RequestBody ProjectType projectType) {
         ProjectType updatedProjectType = projectTypeService.updateProjectType(id, projectType);
         return updatedProjectType != null ? ResponseEntity.ok(updatedProjectType) : ResponseEntity.notFound().build();
     }
 
     // Delete a project type by ID
-    
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/project-types/{id}")
     public ResponseEntity<Void> deleteProjectType(@PathVariable Long id) {
         boolean isDeleted = projectTypeService.deleteProjectType(id);
         return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
