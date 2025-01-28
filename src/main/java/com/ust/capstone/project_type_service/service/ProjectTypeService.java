@@ -1,7 +1,7 @@
 package com.ust.capstone.project_type_service.service;
 
 import com.ust.capstone.project_type_service.entity.ProjectType;
-import com.ust.capstone.project_type_service.reposorty.ProjectTypeRepository;
+import com.ust.capstone.project_type_service.repository.ProjectTypeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
