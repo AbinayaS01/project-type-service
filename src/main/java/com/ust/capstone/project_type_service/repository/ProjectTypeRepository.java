@@ -1,4 +1,4 @@
-package com.ust.capstone.project_type_service.reposorty;
+package com.ust.capstone.project_type_service.repository;
 
 import com.ust.capstone.project_type_service.entity.ProjectType;
 import org.springframework.data.jpa.repository.JpaRepository;
